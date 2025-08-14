@@ -35,7 +35,10 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 # Application definition
 
 INSTALLED_APPS = [
-    'AgrozApp',
+    'Store',
+    'Orders',
+    'FarmerInfo',
+    'Transaction',
     'simpleui',
 
     'crispy_forms',
