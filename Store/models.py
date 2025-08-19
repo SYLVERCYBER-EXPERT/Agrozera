@@ -21,4 +21,3 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.image if self.image else "No Image"}'
-
