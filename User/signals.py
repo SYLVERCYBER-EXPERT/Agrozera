@@ -1,9 +1,30 @@
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up, user_logged_in
 # from store.models import Cart
- from FarmerInfo.models import farmerDaa
- from orders.models import Order
+from FarmerInfo.models import FarmerData
+from User.models import Customer
+from Orders.models import Order
 # from transaction.models import Wallet
+
+
+
+
+@receiver(user_signed_up)
+def create_customer_on_signup(request, user, **kwargs):
+    # You can also pre-fill fields if Allauth provides them
+    Customer.objects.get_or_create(
+        user=user,
+        defaults={
+            "first_name": user.first_name or "",
+            "last_name": user.last_name or "",
+            "phone": "",  # can be updated later by user
+            "street_address": "",
+            "city": "",
+            "country": "",
+        }
+    )
+
+
 
 @receiver(user_signed_up)
 def handle_user_signup(request, user, **kwargs):

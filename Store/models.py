@@ -16,8 +16,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/')
     name = models.CharField(max_length=200)
     price = models.DecimalField(decimal_places=2, max_digits=9, default=1, null=False)
-    sales_price = models.DecimalField(decimal_places=2, max_digits=9)
-    Quantity = models.IntegerField()
+    sales_price = models.DecimalField(default=0, decimal_places=2, max_digits=9)
+    Quantity = models.IntegerField(default=1)
     decription = models.CharField(max_length=1000)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
@@ -30,6 +30,9 @@ class Review(models.Model):
         rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)]) 
         comment = models.TextField(blank=True, null=True)
         created_at = models.DateTimeField(auto_now_add=True)
+
+        class Meta:
+            unique_together = ('product', 'user')
 
 
 class Cart(models.Model):
