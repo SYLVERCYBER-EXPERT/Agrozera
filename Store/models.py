@@ -1,5 +1,5 @@
 from django.db import models
-from User.models import Customer
+# from User.models import Customer
 
 #Product Category
 class Category(models.Model):
